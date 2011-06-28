@@ -1,6 +1,6 @@
 # Gradle IzPack plugin
 
-![IzPack Logo](http://izpack.org/img-izpack/logo-medium.png)
+![IzPack Logo](http://docs.codehaus.org/download/attachments/62914563/IZPACK)
 
 The plugin provides a one-stop solution for packaging, distributing and deploying applications for the Java platform
 using [IzPack](http://izpack.org/).
