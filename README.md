@@ -54,7 +54,7 @@ The IzPack plugin defines the following convention properties in the `izpack` cl
 
     izpack {
         baseDir = file("$buildDir/assemble/izpack")
-        inputFile = file('installer/izpack/installer.xml')
+        installFile = file('installer/izpack/installer.xml')
         outputFile = file("$buildDir/distributions/griffon-${version}-installer.jar")
         compression = 'deflate'
         compressionLevel = 9
