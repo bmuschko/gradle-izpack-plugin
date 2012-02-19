@@ -15,11 +15,10 @@
  */
 package org.gradle.api.plugins.izpack
 
+import groovy.util.logging.Slf4j
+import org.gradle.api.DefaultTask
 import org.gradle.api.InvalidUserDataException
 import org.gradle.api.file.FileCollection
-import org.gradle.api.internal.ConventionTask
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import org.gradle.api.tasks.*
 
 /**
@@ -27,8 +26,8 @@ import org.gradle.api.tasks.*
  *
  * @author Benjamin Muschko
  */
-class CreateInstallerTask extends ConventionTask {
-    static final Logger LOGGER = LoggerFactory.getLogger(CreateInstallerTask)
+@Slf4j
+class CreateInstallerTask extends DefaultTask {
     @InputFiles FileCollection classpath
     @InputDirectory File baseDir
     String installerType
@@ -49,26 +48,26 @@ class CreateInstallerTask extends ConventionTask {
             throw new InvalidUserDataException("Unsupported installer type: '${getInstallerType()}'. Please pick a valid one: ${InstallerType.getNames()}")
         }
         else {
-            LOGGER.info "Installer type = ${getInstallerType()}"
+            log.info "Installer type = ${getInstallerType()}"
         }
 
         if(getCompression() && !Compression.getCompressionForName(getCompression())) {
             throw new InvalidUserDataException("Unsupported compression: '${getCompression()}'. Please pick a valid one: ${Compression.getNames()}")
         }
         else {
-            LOGGER.info "Compression = ${getCompression()}"
+            log.info "Compression = ${getCompression()}"
         }
 
         if(getCompressionLevel() && (getCompressionLevel() < -1 || getCompressionLevel() > 9)) {
             throw new InvalidUserDataException("Unsupported compression level: ${getCompressionLevel()}. Please pick a value between -1 and 9!")
         }
         else {
-            LOGGER.info "Compression level = ${getCompressionLevel()}"
+            log.info "Compression level = ${getCompressionLevel()}"
         }
     }
 
     void compile() {
-        LOGGER.info "Starting to create IzPack installer from base directory '${getBaseDir().canonicalPath}' and install file '${getInstallFile().canonicalPath}'."
+        log.info "Starting to create IzPack installer from base directory '${getBaseDir().canonicalPath}' and install file '${getInstallFile().canonicalPath}'."
 
         ant.taskdef(name: 'izpack', classpath: getClasspath().asPath, classname: 'com.izforge.izpack.ant.IzPackTask')
 
@@ -84,6 +83,6 @@ class CreateInstallerTask extends ConventionTask {
             config(getInstallFile().text)
         }
 
-        LOGGER.info("Finished creating IzPack installer.")
+        log.info("Finished creating IzPack installer.")
     }
 }
