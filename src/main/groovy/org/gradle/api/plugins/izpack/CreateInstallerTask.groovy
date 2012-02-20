@@ -29,7 +29,7 @@ import org.gradle.api.tasks.*
 @Slf4j
 class CreateInstallerTask extends DefaultTask {
     @InputFiles FileCollection classpath
-    @InputDirectory File baseDir
+    @InputDirectory @Optional File baseDir
     String installerType
     @InputFile File installFile
     @OutputFile File outputFile
