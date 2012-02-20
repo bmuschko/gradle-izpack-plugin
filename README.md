@@ -24,7 +24,7 @@ configuration name in your `dependencies` closure.
         }
 
         dependencies {
-            classpath 'bmuschko:gradle-izpack-plugin:0.2'
+            classpath 'bmuschko:gradle-izpack-plugin:0.2.1'
         }
     }
 
