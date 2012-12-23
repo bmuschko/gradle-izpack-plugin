@@ -11,22 +11,22 @@ To use the IzPack plugin, include in your build script:
 
     apply plugin: 'izpack'
 
-The plugin JAR needs to be defined in the classpath of your build script. You can either get the plugin from the GitHub download
-section or upload it to your local repository. To define the IzPack standalone compiler dependency please use the `izpack`
-configuration name in your `dependencies` closure.
+The plugin JAR needs to be defined in the classpath of your build script. It is directly available on
+[Maven Central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.gradle.api.plugins%22%20AND%20a%3A%22gradle-izpack-plugin%22).
+Alternatively, you can download it from GitHub and deploy it to your local repository. The following code snippet shows an
+example on how to retrieve it from Maven Central:
 
     buildscript {
         repositories {
-            add(new org.apache.ivy.plugins.resolver.URLResolver()) {
-                name = 'GitHub'
-                addArtifactPattern 'http://cloud.github.com/downloads/[organisation]/[module]/[module]-[revision].[ext]'
-            }
+            mavenCentral()
         }
 
         dependencies {
-            classpath 'bmuschko:gradle-izpack-plugin:0.2.1'
+            classpath 'org.gradle.api.plugins:gradle-izpack-plugin:0.2.1'
         }
     }
+
+To define the IzPack standalone compiler dependency please use the `izpack` configuration name in your `dependencies` closure.
 
     dependencies {
         izpack 'org.codehaus.izpack:izpack-standalone-compiler:4.3.4'
