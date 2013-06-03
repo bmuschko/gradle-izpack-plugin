@@ -64,7 +64,7 @@ class IzPackPlugin implements Plugin<Project> {
     }
 
     private File getInstallFile(Project project, IzPackPluginConvention izPackConvention) {
-        File installFileDir = new File('src/main/izpack')
+        File installFileDir = new File(project.projectDir, 'src/main/izpack')
         izPackConvention.installFile ?: new File(installFileDir, 'install.xml')
     }
 
