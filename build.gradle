@@ -3,7 +3,7 @@ apply plugin: 'idea'
 apply plugin: 'nexus'
 
 group = 'org.gradle.api.plugins'
-version = '0.2.1'
+version = '0.2.2'
 
 buildscript {
     repositories {

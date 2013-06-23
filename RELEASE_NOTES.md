@@ -1,3 +1,7 @@
+### Version 0.2.2 (June 23, 2013)
+
+* Make sure we can point to the correct `install.xml` file in a multi-project build - [Pull request 3](https://github.com/bmuschko/gradle-izpack-plugin/pull/3).
+
 ### Version 0.2.1 (February 20, 2012)
 
 * Made convention property `baseDir` optional - [Issue 2](https://github.com/bmuschko/gradle-izpack-plugin/issues/2).
