@@ -29,7 +29,7 @@ class IzPackPlugin implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
-        project.configurations.add(IZPACK_CONFIGURATION_NAME).setVisible(false).setTransitive(true)
+        project.configurations.create(IZPACK_CONFIGURATION_NAME).setVisible(false).setTransitive(true)
                .setDescription('The IzPack standalone compiler libraries to be used for this project.')
 
         IzPackPluginConvention izPackConvention = new IzPackPluginConvention()
@@ -50,7 +50,7 @@ class IzPackPlugin implements Plugin<Project> {
             createInstallerTask.conventionMapping.map('appProperties') { izPackConvention.appProperties }
         }
 
-        CreateInstallerTask createInstallerTask = project.tasks.add('izPackCreateInstaller', CreateInstallerTask)
+        CreateInstallerTask createInstallerTask = project.tasks.create('izPackCreateInstaller', CreateInstallerTask)
         createInstallerTask.description = 'Creates an IzPack-based installer'
         createInstallerTask.group = 'installation'
     }
