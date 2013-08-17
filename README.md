@@ -22,7 +22,7 @@ example on how to retrieve it from Maven Central:
         }
 
         dependencies {
-            classpath 'org.gradle.api.plugins:gradle-izpack-plugin:0.2.2'
+            classpath 'org.gradle.api.plugins:gradle-izpack-plugin:0.2.3'
         }
     }
 

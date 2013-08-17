@@ -1,3 +1,8 @@
+### Version 0.2.3 (August 17, 2013)
+
+* Fix deprecation warnings - [Pull request 4](https://github.com/bmuschko/gradle-izpack-plugin/pull/4).
+* Upgrade to Gradle Wrapper 1.7.
+
 ### Version 0.2.2 (June 23, 2013)
 
 * Make sure we can point to the correct `install.xml` file in a multi-project build - [Pull request 3](https://github.com/bmuschko/gradle-izpack-plugin/pull/3).
