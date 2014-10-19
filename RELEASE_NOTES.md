@@ -1,3 +1,10 @@
+### Version 2.0 (October 18, 2014)
+
+* Upgrade to Gradle Wrapper 2.1.
+* Changed package name to `com.bmuschko.gradle.izpack`.
+* Changed group ID to `com.bmuschko`.
+* Adapted plugin IDs to be compatible with Gradle's plugin portal.
+
 ### Version 0.2.3 (August 17, 2013)
 
 * Fix deprecation warnings - [Pull request 4](https://github.com/bmuschko/gradle-izpack-plugin/pull/4).

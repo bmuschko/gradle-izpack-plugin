@@ -12,7 +12,7 @@ To use the IzPack plugin, include in your build script:
     apply plugin: 'izpack'
 
 The plugin JAR needs to be defined in the classpath of your build script. It is directly available on
-[Bintray](https://bintray.com/bmuschko/gradle-plugins/gradle-izpack-plugin).
+[Bintray](https://bintray.com/bmuschko/gradle-plugins/com.bmuschko%3Agradle-izpack-plugin).
 Alternatively, you can download it from GitHub and deploy it to your local repository. The following code snippet shows an
 example on how to retrieve it from Bintray:
 
@@ -22,7 +22,7 @@ example on how to retrieve it from Bintray:
         }
 
         dependencies {
-            classpath 'org.gradle.api.plugins:gradle-izpack-plugin:0.2.3'
+            classpath 'com.bmuschko:gradle-izpack-plugin:2.0'
         }
     }
 

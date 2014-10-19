@@ -13,37 +13,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.gradle.api.plugins.izpack
+package com.bmuschko.gradle.izpack
 
 /**
- * Available installer types.
+ * Available compressions.
  *
  * @author Benjamin Muschko
  */
-enum InstallerType {
-    STANDARD('standard'), WEB('web')
+enum Compression {
+    DEFAULT('default'), DEFLATE('deflate'), RAW('raw')
 
-    static final Map INSTALLER_TYPES
+    static final Map COMPRESSIONS
 
     static {
-        INSTALLER_TYPES = [:]
+        COMPRESSIONS = [:]
 
-        values().each { installerType ->
-            INSTALLER_TYPES.put(installerType.name, installerType)
+        values().each { compression ->
+            COMPRESSIONS.put(compression.name, compression)
         }
     }
 
     final String name
 
-    private InstallerType(String name) {
+    private Compression(String name) {
         this.name = name
     }
 
-    static getInstallerTypeForName(name) {
-        INSTALLER_TYPES[name]
+    static getCompressionForName(name) {
+        COMPRESSIONS[name]
     }
 
     static getNames() {
-        INSTALLER_TYPES.keySet()
+        COMPRESSIONS.keySet()
     }
 }
