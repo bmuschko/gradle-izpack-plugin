@@ -91,12 +91,6 @@ bintray {
 
     pkg {
         repo = 'gradle-plugins'
-        name = 'gradle-izpack-plugin'
-        licenses = ['Apache-2.0']
-    }
-
-    pkg {
-        repo = 'gradle-plugins'
         name = 'com.bmuschko:gradle-izpack-plugin'
         desc = 'Gradle plugin that provides support for packaging applications for the Java platform via IzPack.'
         websiteUrl = "https://github.com/bmuschko/${project.name}"
