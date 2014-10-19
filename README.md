@@ -9,7 +9,7 @@ using [IzPack](http://izpack.org/).
 
 To use the IzPack plugin, include in your build script:
 
-    apply plugin: 'izpack'
+    apply plugin: 'com.bmuschko.izpack'
 
 The plugin JAR needs to be defined in the classpath of your build script. It is directly available on
 [Bintray](https://bintray.com/bmuschko/gradle-plugins/com.bmuschko%3Agradle-izpack-plugin).
