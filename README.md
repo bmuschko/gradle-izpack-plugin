@@ -22,7 +22,7 @@ example on how to retrieve it from Bintray:
         }
 
         dependencies {
-            classpath 'com.bmuschko:gradle-izpack-plugin:2.0'
+            classpath 'com.bmuschko:gradle-izpack-plugin:2.1'
         }
     }
 

@@ -4,7 +4,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:0.6'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2'
     }
 }
 
@@ -14,8 +14,9 @@ apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
 
 group = 'com.bmuschko'
-version = '2.0'
+version = '2.1'
 sourceCompatibility = '1.6'
+targetCompatibility = '1.6'
 
 repositories {
     mavenCentral()
@@ -127,8 +128,4 @@ idea.project {
         def gradleSettings = node.appendNode('component', [name: 'GradleSettings'])
         gradleSettings.appendNode('option', [name: 'SDK_HOME', value: gradle.gradleHomeDir])
     }
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.1'
 }

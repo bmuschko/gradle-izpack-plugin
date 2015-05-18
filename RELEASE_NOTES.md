@@ -1,3 +1,8 @@
+### Version 2.1 (May 18, 2014)
+
+* Upgrade to Gradle Wrapper 2.4.
+* Set source and target compatibility to JDK 1.6 - [Pull request 9](https://github.com/bmuschko/gradle-izpack-plugin/pull/9).
+
 ### Version 2.0 (October 18, 2014)
 
 * Upgrade to Gradle Wrapper 2.1.
