@@ -1,6 +1,24 @@
 # Gradle IzPack plugin
 
-![IzPack Logo](http://docs.codehaus.org/download/attachments/62914563/IZPACK)
+![IzPack Logo](http://izpack.org/img-izpack/logo-medium.png)
+
+<table border=1>
+    <tr>
+        <td>
+            Over the past couple of years this plugin has seen many releases. Thanks to everyone involved! 
+            Unfortunately, I don't have much time to contribute anymore. In practice this means far less activity, 
+            responsiveness on issues and new releases from my end.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            I am 
+            <a href="https://discuss.gradle.org/t/looking-for-new-owners-for-gradle-plugins/9735">actively looking for contributors</a> 
+            willing to take on maintenance and implementation of the project. If you are interested and would love to see this 
+            plugin continue to thrive, shoot me a <a href="mailto:benjamin.muschko@gmail.com">mail</a>.
+        </td>
+    </tr>
+</table>
 
 The plugin provides a one-stop solution for packaging, distributing and deploying applications for the Java platform
 using [IzPack](http://izpack.org/).
