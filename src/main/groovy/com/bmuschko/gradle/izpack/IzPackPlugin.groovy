@@ -26,6 +26,7 @@ import org.gradle.api.Project
  */
 class IzPackPlugin implements Plugin<Project> {
     static final String IZPACK_CONFIGURATION_NAME = 'izpack'
+    static final String IZPACK_TASK_NAME = 'izPackCreateInstaller'
 
     @Override
     void apply(Project project) {
@@ -36,6 +37,7 @@ class IzPackPlugin implements Plugin<Project> {
         project.convention.plugins.cargo = izPackConvention
 
         configureCreateInstallerTask(project, izPackConvention)
+        project.ext.set(IZPACK_TASK_NAME, CreateInstallerTask.class)
     }
 
     private void configureCreateInstallerTask(Project project, IzPackPluginConvention izPackConvention) {
@@ -50,7 +52,7 @@ class IzPackPlugin implements Plugin<Project> {
             createInstallerTask.conventionMapping.map('appProperties') { izPackConvention.appProperties }
         }
 
-        CreateInstallerTask createInstallerTask = project.tasks.create('izPackCreateInstaller', CreateInstallerTask)
+        CreateInstallerTask createInstallerTask = project.tasks.create(IZPACK_TASK_NAME, CreateInstallerTask)
         createInstallerTask.description = 'Creates an IzPack-based installer'
         createInstallerTask.group = 'installation'
     }
