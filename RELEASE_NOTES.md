@@ -1,3 +1,8 @@
+### Version 3.0 (June 26, 2018)
+
+* Upgrade to Gradle Wrapper 4.8.1.
+* Use extension concept.
+
 ### Version 2.1 (May 18, 2014)
 
 * Upgrade to Gradle Wrapper 2.4.

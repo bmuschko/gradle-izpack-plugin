@@ -31,8 +31,7 @@ To use the IzPack plugin, include in your build script:
 
 The plugin JAR needs to be defined in the classpath of your build script. It is directly available on
 [Bintray](https://bintray.com/bmuschko/gradle-plugins/com.bmuschko%3Agradle-izpack-plugin).
-Alternatively, you can download it from GitHub and deploy it to your local repository. The following code snippet shows an
-example on how to retrieve it from Bintray:
+Alternatively, you can download it from GitHub and deploy it to your local repository. The following code snippet shows an example on how to retrieve it from Bintray:
 
     buildscript {
         repositories {
@@ -40,7 +39,7 @@ example on how to retrieve it from Bintray:
         }
 
         dependencies {
-            classpath 'com.bmuschko:gradle-izpack-plugin:2.1'
+            classpath 'com.bmuschko:gradle-izpack-plugin:3.0'
         }
     }
 
