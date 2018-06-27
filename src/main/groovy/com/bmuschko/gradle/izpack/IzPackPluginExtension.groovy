@@ -17,8 +17,6 @@ package com.bmuschko.gradle.izpack
 
 /**
  * Defines IzPack extension.
- *
- * @author Benjamin Muschko
  */
 class IzPackPluginExtension {
     File baseDir

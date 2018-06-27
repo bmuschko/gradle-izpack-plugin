@@ -23,8 +23,6 @@ import org.gradle.api.tasks.*
 
 /**
  * IzPack compilation task.
- *
- * @author Benjamin Muschko
  */
 @Slf4j
 class CreateInstallerTask extends DefaultTask {

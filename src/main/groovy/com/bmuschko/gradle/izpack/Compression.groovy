@@ -17,8 +17,6 @@ package com.bmuschko.gradle.izpack
 
 /**
  * Available compressions.
- *
- * @author Benjamin Muschko
  */
 enum Compression {
     DEFAULT('default'), DEFLATE('deflate'), RAW('raw')

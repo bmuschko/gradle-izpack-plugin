@@ -17,8 +17,6 @@ package com.bmuschko.gradle.izpack
 
 /**
  * Available installer types.
- *
- * @author Benjamin Muschko
  */
 enum InstallerType {
     STANDARD('standard'), WEB('web')

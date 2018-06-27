@@ -21,8 +21,6 @@ import org.gradle.api.Project
 /**
  * <p>A {@link org.gradle.api.Plugin} that provides tasks for packaging, distributing and deploying applications for the
  * Java platform with IzPack.</p>
- *
- * @author Benjamin Muschko
  */
 class IzPackPlugin implements Plugin<Project> {
     public static final String IZPACK_CONFIGURATION_NAME = 'izpack'
