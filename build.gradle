@@ -1,10 +1,10 @@
 buildscript {
     repositories {
-        maven { url 'http://jcenter.bintray.com' }
+        maven { url 'https://plugins.gradle.org/m2/' }
     }
 
     dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.3'
     }
 }
 
@@ -14,9 +14,9 @@ apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
 
 group = 'com.bmuschko'
-version = '2.1'
-sourceCompatibility = '1.6'
-targetCompatibility = '1.6'
+version = '3.0'
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
 
 repositories {
     mavenCentral()
@@ -65,28 +65,33 @@ publishing {
             artifact sourcesJar
             artifact groovydocJar
 
-            pom.withXml {
-                def root = asNode()
-                root.appendNode('name', 'Gradle IzPack plugin')
-                root.appendNode('description', 'Gradle plugin that provides support for packaging applications for the Java platform via IzPack.')
-                root.appendNode('url', 'https://github.com/bmuschko/gradle-izpack-plugin')
-                root.appendNode('inceptionYear', '2012')
+            pom {
+                name = 'Gradle IzPack plugin'
+                description = 'Gradle plugin that provides support for packaging applications for the Java platform via IzPack.'
+                url = 'https://github.com/bmuschko/gradle-izpack-plugin'
+                inceptionYear = '2012'
 
-                def scm = root.appendNode('scm')
-                scm.appendNode('url', 'https://github.com/bmuschko/gradle-izpack-plugin')
-                scm.appendNode('connection', 'scm:https://bmuschko@github.com/bmuschko/gradle-izpack-plugin.git')
-                scm.appendNode('developerConnection', 'scm:git://github.com/bmuschko/gradle-izpack-plugin.git')
+                scm {
+                    url = 'https://github.com/bmuschko/gradle-izpack-plugin'
+                    connection = 'scm:https://bmuschko@github.com/bmuschko/gradle-izpack-plugin.git'
+                    developerConnection = 'scm:git://github.com/bmuschko/gradle-izpack-plugin.git'
+                }
 
-                def license = root.appendNode('licenses').appendNode('license')
-                license.appendNode('name', 'The Apache Software License, Version 2.0')
-                license.appendNode('url', 'http://www.apache.org/licenses/LICENSE-2.0.txt')
-                license.appendNode('distribution', 'repo')
+                licenses {
+                    license {
+                        name = 'The Apache Software License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        distribution = 'repo'
+                    }
+                }
 
-                def developers = root.appendNode('developers')
-                def bmuschko = developers.appendNode('developer')
-                bmuschko.appendNode('id', 'bmuschko')
-                bmuschko.appendNode('name', 'Benjamin Muschko')
-                bmuschko.appendNode('email', 'benjamin.muschko@gmail.com')
+                developers {
+                    developer {
+                        id = 'bmuschko'
+                        name = 'Benjamin Muschko'
+                        email = 'benjamin.muschko@gmail.com'
+                    }
+                }
             }
         }
     }
@@ -121,7 +126,7 @@ bintray {
 }
 
 idea.project {
-    jdkName = '1.6'
+    jdkName = '1.8'
 
     ipr.withXml { provider ->
         def node = provider.asNode()
