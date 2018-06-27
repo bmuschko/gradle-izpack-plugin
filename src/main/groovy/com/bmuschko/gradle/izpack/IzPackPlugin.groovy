@@ -25,29 +25,27 @@ import org.gradle.api.Project
  * @author Benjamin Muschko
  */
 class IzPackPlugin implements Plugin<Project> {
-    static final String IZPACK_CONFIGURATION_NAME = 'izpack'
+    public static final String IZPACK_CONFIGURATION_NAME = 'izpack'
+    public static final String IZPACK_EXTENSION_NAME = 'izpack'
 
     @Override
     void apply(Project project) {
         project.configurations.create(IZPACK_CONFIGURATION_NAME).setVisible(false).setTransitive(true)
                .setDescription('The IzPack standalone compiler libraries to be used for this project.')
-
-        IzPackPluginConvention izPackConvention = new IzPackPluginConvention()
-        project.convention.plugins.cargo = izPackConvention
-
-        configureCreateInstallerTask(project, izPackConvention)
+        IzPackPluginExtension izPackExtension = project.extensions.create(IZPACK_EXTENSION_NAME, IzPackPluginExtension)
+        configureCreateInstallerTask(project, izPackExtension)
     }
 
-    private void configureCreateInstallerTask(Project project, IzPackPluginConvention izPackConvention) {
+    private void configureCreateInstallerTask(Project project, IzPackPluginExtension izPackExtension) {
         project.tasks.withType(CreateInstallerTask).whenTaskAdded { CreateInstallerTask createInstallerTask ->
             createInstallerTask.conventionMapping.map('classpath') { project.configurations.getByName(IZPACK_CONFIGURATION_NAME).asFileTree }
-            createInstallerTask.conventionMapping.map('baseDir') { getBaseDirectory(project, izPackConvention) }
-            createInstallerTask.conventionMapping.map('installerType') { getInstallerType(izPackConvention) }
-            createInstallerTask.conventionMapping.map('installFile') { getInstallFile(project, izPackConvention) }
-            createInstallerTask.conventionMapping.map('outputFile') { getOutputFile(project, izPackConvention) }
-            createInstallerTask.conventionMapping.map('compression') { getCompression(izPackConvention) }
-            createInstallerTask.conventionMapping.map('compressionLevel') { getCompressionLevel(izPackConvention) }
-            createInstallerTask.conventionMapping.map('appProperties') { izPackConvention.appProperties }
+            createInstallerTask.conventionMapping.map('baseDir') { getBaseDirectory(project, izPackExtension) }
+            createInstallerTask.conventionMapping.map('installerType') { getInstallerType(izPackExtension) }
+            createInstallerTask.conventionMapping.map('installFile') { getInstallFile(project, izPackExtension) }
+            createInstallerTask.conventionMapping.map('outputFile') { getOutputFile(project, izPackExtension) }
+            createInstallerTask.conventionMapping.map('compression') { getCompression(izPackExtension) }
+            createInstallerTask.conventionMapping.map('compressionLevel') { getCompressionLevel(izPackExtension) }
+            createInstallerTask.conventionMapping.map('appProperties') { izPackExtension.appProperties }
         }
 
         CreateInstallerTask createInstallerTask = project.tasks.create('izPackCreateInstaller', CreateInstallerTask)
@@ -55,20 +53,20 @@ class IzPackPlugin implements Plugin<Project> {
         createInstallerTask.group = 'installation'
     }
 
-    private File getBaseDirectory(Project project, IzPackPluginConvention izPackConvention) {
-        izPackConvention.baseDir ?: new File(project.buildDir, 'assemble/izpack')
+    private File getBaseDirectory(Project project, IzPackPluginExtension izPackExtension) {
+        izPackExtension.baseDir ?: new File(project.buildDir, 'assemble/izpack')
     }
 
-    private String getInstallerType(IzPackPluginConvention izPackConvention) {
-        izPackConvention.installerType ?: InstallerType.STANDARD.name
+    private String getInstallerType(IzPackPluginExtension izPackExtension) {
+        izPackExtension.installerType ?: InstallerType.STANDARD.name
     }
 
-    private File getInstallFile(Project project, IzPackPluginConvention izPackConvention) {
+    private File getInstallFile(Project project, IzPackPluginExtension izPackExtension) {
         File installFileDir = new File(project.projectDir, 'src/main/izpack')
-        izPackConvention.installFile ?: new File(installFileDir, 'install.xml')
+        izPackExtension.installFile ?: new File(installFileDir, 'install.xml')
     }
 
-    private File getOutputFile(Project project, IzPackPluginConvention izPackConvention) {
+    private File getOutputFile(Project project, IzPackPluginExtension izPackExtension) {
         File outputDir = new File(project.buildDir, 'distributions')
         StringBuilder outputFile = new StringBuilder()
         outputFile <<= project.name
@@ -78,14 +76,14 @@ class IzPackPlugin implements Plugin<Project> {
         }
 
         outputFile <<= '-installer.jar'
-        izPackConvention.outputFile ?: new File(outputDir, outputFile.toString())
+        izPackExtension.outputFile ?: new File(outputDir, outputFile.toString())
     }
 
-    private String getCompression(IzPackPluginConvention izPackConvention) {
-        izPackConvention.compression ?: Compression.DEFAULT.name
+    private String getCompression(IzPackPluginExtension izPackExtension) {
+        izPackExtension.compression ?: Compression.DEFAULT.name
     }
 
-    private Integer getCompressionLevel(IzPackPluginConvention izPackConvention) {
-        izPackConvention.compressionLevel ?: -1
+    private Integer getCompressionLevel(IzPackPluginExtension izPackExtension) {
+        izPackExtension.compressionLevel ?: -1
     }
 }

@@ -16,11 +16,11 @@
 package com.bmuschko.gradle.izpack
 
 /**
- * Defines IzPack convention.
+ * Defines IzPack extension.
  *
  * @author Benjamin Muschko
  */
-class IzPackPluginConvention {
+class IzPackPluginExtension {
     File baseDir
     String installerType
     File installFile
@@ -28,9 +28,4 @@ class IzPackPluginConvention {
     String compression
     Integer compressionLevel
     Map appProperties = [:]
-
-    def izpack(Closure closure) {
-        closure.delegate = this
-        closure()
-    }
 }
