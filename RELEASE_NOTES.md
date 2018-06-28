@@ -1,7 +1,8 @@
-### Version 3.0 (June 26, 2018)
+### Version 3.0 (June 28, 2018)
 
 * Upgrade to Gradle Wrapper 4.8.1.
 * Use extension concept.
+* Installer task is now cacheable.
 
 ### Version 2.1 (May 18, 2014)
 
