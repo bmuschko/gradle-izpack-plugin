@@ -68,6 +68,7 @@ publishing {
             from components.java
             artifact sourcesJar
             artifact groovydocJar
+            artifact javadocJar
 
             pom {
                 name = 'Gradle IzPack plugin'
