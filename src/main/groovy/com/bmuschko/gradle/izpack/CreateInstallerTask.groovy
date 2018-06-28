@@ -26,13 +26,29 @@ import org.gradle.api.tasks.*
  */
 @Slf4j
 class CreateInstallerTask extends DefaultTask {
-    @InputFiles FileCollection classpath
-    @InputDirectory @Optional File baseDir
+    @InputFiles
+    FileCollection classpath
+
+    @InputDirectory
+    @Optional
+    File baseDir
+
+    @Input
     String installerType
-    @InputFile File installFile
-    @OutputFile File outputFile
+
+    @InputFile
+    File installFile
+
+    @OutputFile
+    File outputFile
+
+    @Input
     String compression
+
+    @Input
     Integer compressionLevel
+
+    @Input
     Map appProperties
 
     @TaskAction
