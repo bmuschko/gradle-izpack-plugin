@@ -23,21 +23,26 @@ import org.gradle.api.tasks.*
 /**
  * IzPack compilation task.
  */
+@CacheableTask
 class CreateInstallerTask extends DefaultTask {
     @InputFiles
+    @Classpath
     FileCollection classpath
 
     @InputDirectory
     @Optional
+    @PathSensitive(PathSensitivity.RELATIVE)
     File baseDir
 
     @Input
     String installerType
 
     @InputFile
+    @PathSensitive(PathSensitivity.RELATIVE)
     File installFile
 
     @OutputFile
+    @PathSensitive(PathSensitivity.RELATIVE)
     File outputFile
 
     @Input
