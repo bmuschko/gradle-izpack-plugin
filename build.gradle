@@ -1,5 +1,8 @@
-apply plugin: 'groovy'
-apply plugin: 'java-gradle-plugin'
+plugins {
+    id 'groovy'
+    id 'java-gradle-plugin'
+}
+
 apply from: "$rootDir/gradle/functional-test.gradle"
 apply from: "$rootDir/gradle/additional-artifacts.gradle"
 apply from: "$rootDir/gradle/publishing.gradle"
@@ -16,7 +19,7 @@ repositories {
 dependencies {
     compile localGroovy()
     compile gradleApi()
-    testCompile('org.spockframework:spock-core:1.0-groovy-2.4') {
+    testCompile('org.spockframework:spock-core:1.3-groovy-2.4') {
         exclude group: 'org.codehaus.groovy'
     }
 }
