@@ -42,7 +42,6 @@ class CreateInstallerTask extends DefaultTask {
     File installFile
 
     @OutputFile
-    @PathSensitive(PathSensitivity.RELATIVE)
     File outputFile
 
     @Input

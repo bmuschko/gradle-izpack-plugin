@@ -17,9 +17,9 @@ repositories {
 }
 
 dependencies {
-    compile localGroovy()
-    compile gradleApi()
-    testCompile('org.spockframework:spock-core:1.3-groovy-2.4') {
+    localGroovy()
+    gradleApi()
+    testImplementation('org.spockframework:spock-core:1.3-groovy-2.4') {
         exclude group: 'org.codehaus.groovy'
     }
 }
@@ -27,7 +27,7 @@ dependencies {
 jar {
     manifest {
         attributes 'Implementation-Title': 'Gradle IzPack plugin',
-                   'Implementation-Version': version,
+                   'Implementation-Version': archiveVersion,
                    'Built-By': System.getProperty("user.name"),
                    'Built-Date': new Date(),
                    'Built-JDK': System.getProperty("java.version"),
