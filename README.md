@@ -41,7 +41,7 @@ Alternatively, you can download it from GitHub and deploy it to your local repos
         }
 
         dependencies {
-            classpath 'com.bmuschko:gradle-izpack-plugin:3.0'
+            classpath 'com.bmuschko:gradle-izpack-plugin:3.1'
         }
     }
 

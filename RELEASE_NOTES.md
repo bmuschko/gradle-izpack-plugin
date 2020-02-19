@@ -1,3 +1,8 @@
+### Version 3.1 (February 19, 2020)
+
+* Upgrade to Gradle Wrapper 5.5.1.
+* Add support for IzPack 5.x - [Pull request 14](https://github.com/bmuschko/gradle-izpack-plugin/pull/14).
+
 ### Version 3.0 (June 28, 2018)
 
 * Upgrade to Gradle Wrapper 4.8.1.
