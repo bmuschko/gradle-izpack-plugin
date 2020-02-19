@@ -27,7 +27,9 @@ using [IzPack](http://izpack.org/).
 
 To use the IzPack plugin, include in your build script:
 
-    apply plugin: 'com.bmuschko.izpack'
+    plugins {
+        id 'com.bmuschko.izpack'
+    }
 
 The plugin JAR needs to be defined in the classpath of your build script. It is directly available on
 [Bintray](https://bintray.com/bmuschko/gradle-plugins/com.bmuschko%3Agradle-izpack-plugin).
@@ -45,8 +47,16 @@ Alternatively, you can download it from GitHub and deploy it to your local repos
 
 To define the IzPack standalone compiler dependency please use the `izpack` configuration name in your `dependencies` closure.
 
+For IzPack v5
+
     dependencies {
-        izpack 'org.codehaus.izpack:izpack-standalone-compiler:4.3.4'
+        izpack 'org.codehaus.izpack:izpack-ant:5.1.3'
+    }
+
+or for IzPack v4
+
+    dependencies {
+        izpack 'org.codehaus.izpack:izpack-standalone-compiler:4.3.5'
     }
 
 ## Tasks

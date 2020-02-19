@@ -6,7 +6,7 @@ import org.junit.Rule
 import org.junit.rules.TemporaryFolder
 import spock.lang.Specification
 
-class IzPackPluginFunctionalTest extends Specification {
+class IzPack4PluginFunctionalTest extends Specification {
     @Rule TemporaryFolder temporaryFolder = new TemporaryFolder()
 
     File projectDir
@@ -17,25 +17,8 @@ class IzPackPluginFunctionalTest extends Specification {
         projectDir = temporaryFolder.root
         buildFile = temporaryFolder.newFile('build.gradle')
         settingsFile = temporaryFolder.newFile('settings.gradle')
-        buildFile << """
-            plugins {
-                id 'com.bmuschko.izpack'
-                id 'java'
-            }
-            
-            version = '1.0'
-            
-            repositories {
-                mavenCentral()
-            }
-            
-            dependencies {
-                izpack 'org.codehaus.izpack:izpack-standalone-compiler:4.3.4'
-            }
-        """
-        settingsFile << """
-            rootProject.name = 'myizpack'
-        """
+        buildFile << buildFileDefault()
+        settingsFile << settingsFile()
     }
 
     def "can create installer with default settings"() {
@@ -53,17 +36,7 @@ class IzPackPluginFunctionalTest extends Specification {
 
     def "can create installer with custom settings"() {
         given:
-        buildFile << """
-            izpack {
-                baseDir = file("\$buildDir/my/izpack")
-                installFile = file('installer/izpack/installer.xml')
-                outputFile = file("\$buildDir/out/griffon-\${version}-installer.jar")
-                compression = 'deflate'
-                compressionLevel = 9
-                appProperties = ['app.group': 'Griffon', 'app.name': 'griffon', 'app.title': 'Griffon',
-                                 'app.version': version, 'app.subpath': "Griffon-\$version"]
-            }
-        """
+        buildFile << buildFileCustomSettings()
         def installerDir = temporaryFolder.newFolder('installer', 'izpack')
         new File(installerDir, 'installer.xml') << installationFile()
         temporaryFolder.newFolder('build', 'my', 'izpack')
@@ -83,7 +56,56 @@ class IzPackPluginFunctionalTest extends Specification {
         GradleRunner.create().withProjectDir(projectDir).withArguments(arguments).withPluginClasspath()
     }
 
-    static String installationFile() {
+
+    private String buildFileDefault() {
+        buildFileBase() + buildFileIzPackDependency()
+    }
+
+    private String buildFileBase() {
+        """
+            plugins {
+                id 'com.bmuschko.izpack'
+                id 'java'
+            }
+            
+            version = '1.0'
+            
+            repositories {
+                mavenCentral()
+            }
+        """
+    }
+
+    protected String buildFileIzPackDependency() {
+        """
+            dependencies {
+                izpack 'org.codehaus.izpack:izpack-standalone-compiler:4.3.5'
+            }
+        """
+    }
+
+    private String buildFileCustomSettings() {
+        """
+            izpack {
+                baseDir = file("\$buildDir/my/izpack")
+                installFile = file('installer/izpack/installer.xml')
+                outputFile = file("\$buildDir/out/griffon-\${version}-installer.jar")
+                compression = 'deflate'
+                compressionLevel = 9
+                appProperties = ['app.group': 'Griffon', 'app.name': 'griffon', 'app.title': 'Griffon',
+                                 'app.version': version, 'app.subpath': "Griffon-\$version"]
+            }
+        """
+    }
+
+
+    private String settingsFile() {
+        """
+            rootProject.name = 'myizpack'
+        """
+    }
+
+    protected String installationFile() {
         """
             <installation version="1.0">
                 <info>
