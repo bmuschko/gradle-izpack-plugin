@@ -38,6 +38,7 @@ gradlePlugin {
         create('izpack-plugin') {
             id = 'com.bmuschko.izpack'
             displayName = 'Gradle IzPack Plugin'
+            description = 'Plugin that provides support for packaging applications for the Java platform via IzPack.'
             implementationClass = 'com.bmuschko.gradle.izpack.IzPackPlugin'
         }
     }
