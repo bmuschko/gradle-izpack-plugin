@@ -1,3 +1,9 @@
+### Version 3.2 (April 28, 2020)
+
+* Upgrade to Gradle Wrapper 6.0.1.
+* Compatibility with Gradle 7.
+* Hosting of plugin on Gradle plugin portal only.
+
 ### Version 3.1 (February 19, 2020)
 
 * Upgrade to Gradle Wrapper 5.5.1.

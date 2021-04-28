@@ -28,22 +28,23 @@ using [IzPack](http://izpack.org/).
 To use the IzPack plugin, include in your build script:
 
     plugins {
-        id 'com.bmuschko.izpack'
+        id 'com.bmuschko.izpack' version '3.2'
     }
 
-The plugin JAR needs to be defined in the classpath of your build script. It is directly available on
-[Bintray](https://bintray.com/bmuschko/gradle-plugins/com.bmuschko%3Agradle-izpack-plugin).
-Alternatively, you can download it from GitHub and deploy it to your local repository. The following code snippet shows an example on how to retrieve it from Bintray:
+The plugin JAR needs to be defined in the classpath of your build script. It is directly available on the
+[Gradle plugin portal](https://plugins.gradle.org/plugin/com.bmuschko.izpack). The following code snippet shows a usage example:
 
     buildscript {
         repositories {
-            jcenter()
+            gradlePluginPortal()
         }
 
         dependencies {
-            classpath 'com.bmuschko:gradle-izpack-plugin:3.1'
+            classpath 'com.bmuschko:gradle-izpack-plugin:3.2'
         }
     }
+
+    apply plugin: 'com.bmuschko.izpack'
 
 To define the IzPack standalone compiler dependency please use the `izpack` configuration name in your `dependencies` closure.
 
