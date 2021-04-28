@@ -1,4 +1,4 @@
-# Gradle IzPack plugin [![Build Status](https://travis-ci.org/bmuschko/gradle-izpack-plugin.svg?branch=master)](https://travis-ci.org/bmuschko/gradle-izpack-plugin)
+# Gradle IzPack plugin [![Build Status](https://github.com/bmuschko/gradle-izpack-plugin/workflows/Build%20%5BLinux%5D/badge.svg)](https://github.com/bmuschko/gradle-izpack-plugin/actions?query=workflow%3A%22Build+%5BLinux%5D%22)
 
 ![IzPack Logo](http://izpack.org/img-izpack/logo-medium.png)
 

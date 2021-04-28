@@ -1,14 +1,14 @@
 plugins {
     id 'groovy'
     id 'java-gradle-plugin'
+    id 'com.gradle.plugin-publish' version '0.12.0'
 }
 
 apply from: "$rootDir/gradle/functional-test.gradle"
 apply from: "$rootDir/gradle/additional-artifacts.gradle"
-apply from: "$rootDir/gradle/publishing.gradle"
 
 group = 'com.bmuschko'
-version = '3.1'
+version = '3.2'
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
@@ -17,9 +17,7 @@ repositories {
 }
 
 dependencies {
-    localGroovy()
-    gradleApi()
-    testImplementation('org.spockframework:spock-core:1.0-groovy-2.4') {
+    testImplementation('org.spockframework:spock-core:1.2-groovy-2.5') {
         exclude group: 'org.codehaus.groovy'
     }
 }
@@ -33,4 +31,19 @@ jar {
                    'Built-JDK': System.getProperty("java.version"),
                    'Built-Gradle': gradle.gradleVersion
     }
+}
+
+gradlePlugin {
+    plugins {
+        create('izpack-plugin') {
+            id = 'com.bmuschko.izpack'
+            implementationClass = 'com.bmuschko.gradle.izpack.IzPackPlugin'
+        }
+    }
+}
+
+pluginBundle {
+    website = "https://github.com/bmuschko/gradle-izpack-plugin"
+    vcsUrl = "https://github.com/bmuschko/gradle-izpack-plugin"
+    tags = ['packaging', 'distribution', 'installer']
 }
