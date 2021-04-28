@@ -37,6 +37,7 @@ gradlePlugin {
     plugins {
         create('izpack-plugin') {
             id = 'com.bmuschko.izpack'
+            displayName = 'Gradle IzPack Plugin'
             implementationClass = 'com.bmuschko.gradle.izpack.IzPackPlugin'
         }
     }
