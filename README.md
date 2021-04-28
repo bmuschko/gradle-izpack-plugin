@@ -1,4 +1,4 @@
-# Gradle IzPack plugin [![Build Status](https://github.com/bmuschko/gradle-izpack-plugin/workflows/Build%20%5BLinux%5D/badge.svg)](https://github.com/bmuschko/gradle-izpack-plugin/actions?query=workflow%3A%22Build+%5BLinux%5D%22)
+# Gradle IzPack plugin [![Build [Linux]](https://github.com/bmuschko/gradle-izpack-plugin/actions/workflows/linux-build.yaml/badge.svg)](https://github.com/bmuschko/gradle-izpack-plugin/actions/workflows/linux-build.yaml)
 
 ![IzPack Logo](http://izpack.org/img-izpack/logo-medium.png)
 
