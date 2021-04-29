@@ -48,4 +48,10 @@ pluginBundle {
     website = "https://github.com/bmuschko/gradle-izpack-plugin"
     vcsUrl = "https://github.com/bmuschko/gradle-izpack-plugin"
     tags = ['packaging', 'distribution', 'installer']
+
+    mavenCoordinates {
+        groupId = project.group.toString()
+        artifactId = project.name
+        version = project.version.toString()
+    }
 }
