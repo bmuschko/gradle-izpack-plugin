@@ -1,8 +1,8 @@
 # Gradle IzPack plugin [![Build [Linux]](https://github.com/bmuschko/gradle-izpack-plugin/actions/workflows/linux-build.yaml/badge.svg)](https://github.com/bmuschko/gradle-izpack-plugin/actions/workflows/linux-build.yaml)
 
-![IzPack Logo](http://izpack.org/img-izpack/logo-medium.png)
+![IzPack Logo](https://izpack.org/img-izpack/logo-medium.png)
 
-<table border=1>
+<table style="border: 1px solid">
     <tr>
         <td>
             Over the past couple of years this plugin has seen many releases. Thanks to everyone involved! 
@@ -10,18 +10,15 @@
             responsiveness on issues and new releases from my end.
         </td>
     </tr>
-    <tr>
+    <tr style="background-color: #F0F0F01C">
         <td>
-            I am 
-            <a href="https://discuss.gradle.org/t/looking-for-new-owners-for-gradle-plugins/9735">actively looking for contributors</a> 
-            willing to take on maintenance and implementation of the project. If you are interested and would love to see this 
-            plugin continue to thrive, shoot me a <a href="mailto:benjamin.muschko@gmail.com">mail</a>.
+            Currently, there is work in progress to move this plugin to the <a href="https://izpack.org/">IzPack</a> project.
         </td>
     </tr>
 </table>
 
 The plugin provides a one-stop solution for packaging, distributing and deploying applications for the Java platform
-using [IzPack](http://izpack.org/).
+using [IzPack](https://izpack.org/).
 
 ## Usage
 
@@ -72,7 +69,7 @@ The IzPack plugin defines the following convention properties in the `izpack` cl
 
 * `baseDir`: The base directory of compilation process (defaults to `build/assemble/izpack`).
 * `installerType`: The installer type (defaults to `standard`). You can select between `standard` and `web`.
-* `installFile`: The location of the [IzPack installation file](http://izpack.org/documentation/installation-files.html) (defaults to `src/main/izpack/install.xml`).
+* `installFile`: The location of the [IzPack installation file](https://izpack.atlassian.net/wiki/spaces/IZPACK/pages/491709/Writing+Installation+Descriptions) (defaults to `src/main/izpack/install.xml`).
 * `outputFile`: The installer output directory and filename (defaults to `build/distributions/<projectname>-<version>-installer.jar`).
 * `compression`: The compression of the installation (defaults to `default`). You can select between `default`, `deflate` and `raw`.
 * `compressionLevel`: The compression level of the installation (defaults to -1 for no compression). Valid values are -1 to 9.
