@@ -8,7 +8,7 @@ apply from: "$rootDir/gradle/functional-test.gradle"
 apply from: "$rootDir/gradle/additional-artifacts.gradle"
 
 group = 'com.bmuschko'
-version = '3.2'
+version = '3.2.1'
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
