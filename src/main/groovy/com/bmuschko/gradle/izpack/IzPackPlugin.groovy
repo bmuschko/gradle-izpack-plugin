@@ -36,7 +36,7 @@ class IzPackPlugin implements Plugin<Project> {
     }
 
     private void configureCreateInstallerTask(Project project, IzPackPluginExtension izPackExtension) {
-        project.tasks.withType(CreateInstallerTask).whenTaskAdded { CreateInstallerTask createInstallerTask ->
+        project.tasks.withType(CreateInstallerTask).configureEach { CreateInstallerTask createInstallerTask ->
             createInstallerTask.conventionMapping.map('classpath') { project.configurations.getByName(IZPACK_CONFIGURATION_NAME).asFileTree }
             createInstallerTask.conventionMapping.map('baseDir') { getBaseDirectory(project, izPackExtension) }
             createInstallerTask.conventionMapping.map('installerType') { getInstallerType(izPackExtension) }
@@ -47,13 +47,14 @@ class IzPackPlugin implements Plugin<Project> {
             createInstallerTask.conventionMapping.map('appProperties') { izPackExtension.appProperties }
         }
 
-        CreateInstallerTask createInstallerTask = project.tasks.create('izPackCreateInstaller', CreateInstallerTask)
-        createInstallerTask.description = 'Creates an IzPack-based installer'
-        createInstallerTask.group = 'installation'
+        project.tasks.register('izPackCreateInstaller', CreateInstallerTask) {
+            description = 'Creates an IzPack-based installer'
+            group = 'installation'
+        }
     }
 
     private File getBaseDirectory(Project project, IzPackPluginExtension izPackExtension) {
-        izPackExtension.baseDir ?: new File(project.buildDir, 'assemble/izpack')
+        izPackExtension.baseDir ?: project.layout.buildDirectory.dir('assemble/izpack').get().asFile
     }
 
     private String getInstallerType(IzPackPluginExtension izPackExtension) {
@@ -66,7 +67,7 @@ class IzPackPlugin implements Plugin<Project> {
     }
 
     private File getOutputFile(Project project, IzPackPluginExtension izPackExtension) {
-        File outputDir = new File(project.buildDir, 'distributions')
+        File outputDir = project.layout.buildDirectory.dir('distributions').get().asFile
         StringBuilder outputFile = new StringBuilder()
         outputFile <<= project.name
 
