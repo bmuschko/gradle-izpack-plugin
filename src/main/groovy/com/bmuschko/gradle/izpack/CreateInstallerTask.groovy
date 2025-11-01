@@ -17,13 +17,16 @@ package com.bmuschko.gradle.izpack
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.InvalidUserDataException
-import org.gradle.api.file.FileCollection
+import org.gradle.api.file.ConfigurableFileCollection
+import org.gradle.api.file.DirectoryProperty
+import org.gradle.api.file.RegularFileProperty
+import org.gradle.api.provider.MapProperty
+import org.gradle.api.provider.Property
 import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Classpath
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputDirectory
 import org.gradle.api.tasks.InputFile
-import org.gradle.api.tasks.InputFiles
 import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.PathSensitive
@@ -34,34 +37,38 @@ import org.gradle.api.tasks.TaskAction
  * IzPack compilation task.
  */
 @CacheableTask
-class CreateInstallerTask extends DefaultTask {
-    @InputFiles
+abstract class CreateInstallerTask extends DefaultTask {
     @Classpath
-    FileCollection classpath
+    abstract ConfigurableFileCollection getClasspath()
 
     @InputDirectory
     @Optional
     @PathSensitive(PathSensitivity.RELATIVE)
-    File baseDir
+    abstract DirectoryProperty getBaseDir()
 
     @Input
-    String installerType
+    @Optional
+    abstract Property<String> getInstallerType()
 
     @InputFile
     @PathSensitive(PathSensitivity.RELATIVE)
-    File installFile
+    abstract RegularFileProperty getInstallFile()
 
     @OutputFile
-    File outputFile
+    @Optional
+    abstract RegularFileProperty getOutputFile()
 
     @Input
-    String compression
+    @Optional
+    abstract Property<String> getCompression()
 
     @Input
-    Integer compressionLevel
+    @Optional
+    abstract Property<Integer> getCompressionLevel()
 
     @Input
-    Map appProperties
+    @Optional
+    abstract MapProperty<String, String> getAppProperties()
 
     @TaskAction
     void start() {
@@ -70,40 +77,47 @@ class CreateInstallerTask extends DefaultTask {
     }
 
     void validateConfiguration() {
-        if(getInstallerType() && !InstallerType.getInstallerTypeForName(getInstallerType())) {
-            throw new InvalidUserDataException("Unsupported installer type: '${getInstallerType()}'. Please pick a valid one: ${InstallerType.getNames()}")
+        String type = getInstallerType().get()
+        if(type && !InstallerType.getInstallerTypeForName(type)) {
+            throw new InvalidUserDataException("Unsupported installer type: '${type}'. Please pick a valid one: ${InstallerType.getNames()}")
         } else {
-            logger.info "Installer type = ${getInstallerType()}"
+            logger.info "Installer type = ${type}"
         }
 
-        if(getCompression() && !Compression.getCompressionForName(getCompression())) {
-            throw new InvalidUserDataException("Unsupported compression: '${getCompression()}'. Please pick a valid one: ${Compression.getNames()}")
+        String comp = getCompression().get()
+        if(comp && !Compression.getCompressionForName(comp)) {
+            throw new InvalidUserDataException("Unsupported compression: '${comp}'. Please pick a valid one: ${Compression.getNames()}")
         } else {
-            logger.info "Compression = ${getCompression()}"
+            logger.info "Compression = ${comp}"
         }
 
-        if(getCompressionLevel() && (getCompressionLevel() < -1 || getCompressionLevel() > 9)) {
-            throw new InvalidUserDataException("Unsupported compression level: ${getCompressionLevel()}. Please pick a value between -1 and 9!")
+        Integer level = getCompressionLevel().get()
+        if(level && (level < -1 || level > 9)) {
+            throw new InvalidUserDataException("Unsupported compression level: ${level}. Please pick a value between -1 and 9!")
         } else {
-            logger.info "Compression level = ${getCompressionLevel()}"
+            logger.info "Compression level = ${level}"
         }
     }
 
     void compile() {
-        logger.info "Starting to create IzPack installer from base directory '${getBaseDir().canonicalPath}' and install file '${getInstallFile().canonicalPath}'."
+        File baseDirFile = getBaseDir().get().asFile
+        File installFileFile = getInstallFile().get().asFile
+        File outputFileFile = getOutputFile().get().asFile
+
+        logger.info "Starting to create IzPack installer from base directory '${baseDirFile.canonicalPath}' and install file '${installFileFile.canonicalPath}'."
 
         ant.taskdef(name: 'izpack', classpath: getClasspath().asPath, classname: 'com.izforge.izpack.ant.IzPackTask')
 
-        getAppProperties().entrySet().each {
+        getAppProperties().get().entrySet().each {
             ant.property(name: it.key, value: it.value)
         }
 
-        ant.izpack(basedir: getBaseDir().canonicalPath,
-                   output: getOutputFile().canonicalPath,
-                   installerType: getInstallerType(),
-                   compression: getCompression(),
-                   compressionlevel: getCompressionLevel()) {
-            config(getInstallFile().text)
+        ant.izpack(basedir: baseDirFile.canonicalPath,
+                   output: outputFileFile.canonicalPath,
+                   installerType: getInstallerType().get(),
+                   compression: getCompression().get(),
+                   compressionlevel: getCompressionLevel().get()) {
+            config(installFileFile.text)
         }
 
         logger.info("Finished creating IzPack installer.")

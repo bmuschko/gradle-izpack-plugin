@@ -15,15 +15,20 @@
  */
 package com.bmuschko.gradle.izpack
 
+import org.gradle.api.file.DirectoryProperty
+import org.gradle.api.file.RegularFileProperty
+import org.gradle.api.provider.MapProperty
+import org.gradle.api.provider.Property
+
 /**
  * Defines IzPack extension.
  */
-class IzPackPluginExtension {
-    File baseDir
-    String installerType
-    File installFile
-    File outputFile
-    String compression
-    Integer compressionLevel
-    Map appProperties = [:]
+interface IzPackPluginExtension {
+    DirectoryProperty getBaseDir()
+    Property<String> getInstallerType()
+    RegularFileProperty getInstallFile()
+    RegularFileProperty getOutputFile()
+    Property<String> getCompression()
+    Property<Integer> getCompressionLevel()
+    MapProperty<String, String> getAppProperties()
 }
