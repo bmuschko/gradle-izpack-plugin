@@ -15,8 +15,8 @@ task functionalTest(type: Test) {
     mustRunAfter test
 
     reports {
-        html.destination = project.file("$html.destination/functional")
-        junitXml.destination = project.file("$junitXml.destination/functional")
+        html.outputLocation = project.file("${project.buildDir}/reports/tests/functional")
+        junitXml.outputLocation = project.file("${project.buildDir}/test-results/functional")
     }
 }
 

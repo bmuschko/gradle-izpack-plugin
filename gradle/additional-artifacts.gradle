@@ -1,15 +1,15 @@
 task sourcesJar(type: Jar) {
-    classifier 'sources'
+    archiveClassifier = 'sources'
     from sourceSets.main.allSource
 }
 
 task groovydocJar(type: Jar, dependsOn: groovydoc) {
-    classifier 'groovydoc'
+    archiveClassifier = 'groovydoc'
     from groovydoc.destinationDir
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier 'javadoc'
+    archiveClassifier = 'javadoc'
     from javadoc.destinationDir
 }
 

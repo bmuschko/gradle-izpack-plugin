@@ -2,30 +2,33 @@ package com.bmuschko.gradle.izpack
 
 import org.gradle.testkit.runner.BuildResult
 import org.gradle.testkit.runner.GradleRunner
-import org.junit.Rule
-import org.junit.rules.TemporaryFolder
+import spock.lang.Requires
 import spock.lang.Specification
+import spock.lang.TempDir
 
+@Requires({ javaVersion < 14 })
 class IzPack4PluginFunctionalTest extends Specification {
-    @Rule TemporaryFolder temporaryFolder = new TemporaryFolder()
+    @TempDir
+    File temporaryFolder
 
     File projectDir
     File buildFile
     File settingsFile
 
     def setup() {
-        projectDir = temporaryFolder.root
-        buildFile = temporaryFolder.newFile('build.gradle')
-        settingsFile = temporaryFolder.newFile('settings.gradle')
-        buildFile << buildFileDefault()
-        settingsFile << settingsFile()
+        projectDir = temporaryFolder
+        buildFile = new File(temporaryFolder, 'build.gradle')
+        settingsFile = new File(temporaryFolder, 'settings.gradle')
     }
 
     def "can create installer with default settings"() {
         given:
-        def installerDir = temporaryFolder.newFolder('src', 'main', 'izpack')
+        buildFile << buildFileDefault()
+        settingsFile << settingsFile()
+        def installerDir = new File(temporaryFolder, 'src/main/izpack')
+        installerDir.mkdirs()
         new File(installerDir, 'install.xml') << installationFile()
-        temporaryFolder.newFolder('build', 'assemble', 'izpack')
+        new File(temporaryFolder, 'build/assemble/izpack').mkdirs()
 
         when:
         build('izPackCreateInstaller')
@@ -36,10 +39,13 @@ class IzPack4PluginFunctionalTest extends Specification {
 
     def "can create installer with custom settings"() {
         given:
+        buildFile << buildFileDefault()
         buildFile << buildFileCustomSettings()
-        def installerDir = temporaryFolder.newFolder('installer', 'izpack')
+        settingsFile << settingsFile()
+        def installerDir = new File(temporaryFolder, 'installer/izpack')
+        installerDir.mkdirs()
         new File(installerDir, 'installer.xml') << installationFile()
-        temporaryFolder.newFolder('build', 'my', 'izpack')
+        new File(temporaryFolder, 'build/my/izpack').mkdirs()
 
         when:
         build('izPackCreateInstaller')
