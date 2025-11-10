@@ -28,7 +28,7 @@ class IzPackPlugin implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
-        project.getLogger().warn("You are using the legacy plugin id. Please use the 'org.izpack' plugin id instead.")
+        project.getLogger().warn("You are using the legacy plugin id. Please use the 'org.izpack.gradle' plugin id instead.")
         project.configurations.create(IZPACK_CONFIGURATION_NAME).setVisible(false).setTransitive(true)
                .setDescription('The IzPack standalone compiler libraries to be used for this project.')
         IzPackPluginExtension izPackExtension = project.extensions.create(IZPACK_EXTENSION_NAME, IzPackPluginExtension)

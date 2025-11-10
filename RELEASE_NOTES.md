@@ -1,4 +1,4 @@
-### Version 3.2.1 (October 28, 2025)
+### Version 3.2.1 (November 10, 2025)
 
 * Preparation for move to izpack.org
 * Adds warning with remark for new plugin id

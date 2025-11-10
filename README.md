@@ -12,7 +12,7 @@
     </tr>
     <tr style="background-color: #F0F0F01C">
         <td>
-            Currently, there is work in progress to move this plugin to the <a href="https://izpack.org/">IzPack</a> project.
+            The plugin is now maintained by <a href="https://izpack.org/">IzPack</a> under the <a href="https://github.com/izpack/izpack-gradle-plugin">izpack-gradle-plugin</a> project.
         </td>
     </tr>
 </table>
@@ -25,7 +25,7 @@ using [IzPack](https://izpack.org/).
 To use the IzPack plugin, include in your build script:
 
     plugins {
-        id 'com.bmuschko.izpack' version '3.2'
+        id 'com.bmuschko.izpack' version '3.2.1'
     }
 
 The plugin JAR needs to be defined in the classpath of your build script. It is directly available on the
@@ -37,7 +37,7 @@ The plugin JAR needs to be defined in the classpath of your build script. It is 
         }
 
         dependencies {
-            classpath 'com.bmuschko:gradle-izpack-plugin:3.2'
+            classpath 'com.bmuschko:gradle-izpack-plugin:3.2.1'
         }
     }
 
